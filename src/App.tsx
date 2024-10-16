@@ -1,27 +1,30 @@
-import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
-import Todoinput from './components/TodoInput';
+import { useState } from 'react';
+import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
 
 function App() {
-  const [todos, setTodos] = useState([    'Task 1',
-    'Task 2',
-    'Task 3'])
+  const [todos, setTodos] = useState([]);  // Empty array initially
 
-    function handleAddTodos(newTodo){
-      const newTodoList = [...todos, newTodo]
-      setTodos(newTodoList)
+  // Function to add new todos
+  function handleAddTodos(newTodo) {
+    const newTodoList = [...todos, newTodo];
+    setTodos(newTodoList);
+  }
+
+  // Function to delete a todo by index
+    function handleDeleteTodos(index) {
+      const newTodoList = todos.filter((_, todoIndex) => todoIndex !== index);
+      setTodos(newTodoList);
     }
-  return (
-<>
-<main>
-  <Todoinput handleAddTodos={handleAddTodos}/>
-  <TodoList todos={todos}/>
 
-  </main></>
-  )
+  return (
+    <>
+      <main>
+        <TodoInput handleAddTodos={handleAddTodos} />
+        <TodoList handleDeleteTodos={handleDeleteTodos} todos={todos} />
+      </main>
+    </>
+  );
 }
 
-export default App
+export default App;
