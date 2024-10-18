@@ -17,7 +17,7 @@ export default function TodoCard(props: any) {
             handleDeleteTodos(index);
           }}
         >
-          <i className="fa-regular fa-trash"></i>
+          <i className="fa-solid fa-trash"></i>{" "}
         </button>
       </div>
     </li>
