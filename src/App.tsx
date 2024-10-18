@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 
@@ -10,15 +10,22 @@ function App() {
   const [todos, setTodos] = useState<Todo[]>([]); // Empty array initially
   const [todoValue, setTodoValue] = useState(""); // Empty string initially
 
+  function persistData(newList: [...string[], any]) {
+    localStorage.setItem("todos", JSON.stringify({ todos: newList }));
+  }
   // Function to add new todos
   function handleAddTodos(newTodo: any) {
-    const newTodoList = [...todos, newTodo];
+    const newTodoList: [...string[], any] = [...todos, newTodo];
+    persistData(newTodoList);
     setTodos(newTodoList);
   }
 
   // Function to delete a todo by index
   function handleDeleteTodos(index: any) {
-    const newTodoList = todos.filter((_, todoIndex) => todoIndex !== index);
+    const newTodoList: any = todos.filter(
+      (_, todoIndex) => todoIndex !== index
+    );
+    persistData(newTodoList);
     setTodos(newTodoList);
   }
 
@@ -27,6 +34,18 @@ function App() {
     setTodoValue(valueToBeEdited);
     handleDeleteTodos(index);
   }
+
+  useEffect(() => {
+    if (!localStorage) {
+      return;
+    }
+    let localTodos: any = localStorage.getItem("todos");
+    if (!localTodos) {
+      return;
+    }
+    localTodos = JSON.parse(localTodos).todos;
+    setTodos(localTodos);
+  }, []);
 
   return (
     <>
