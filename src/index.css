@@ -79,6 +79,7 @@ p {
   padding: 14px;
   border-radius: 14px;
   background: white;
+  margin: 20px;
 }
 
 .todoItem p {
@@ -115,3 +116,4 @@ p {
     font-size: 1em;
   }
 }
+
