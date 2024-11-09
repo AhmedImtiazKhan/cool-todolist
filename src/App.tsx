@@ -13,14 +13,14 @@ function App() {
   function persistData(newList: [...string[], any]) {
     localStorage.setItem("todos", JSON.stringify({ todos: newList }));
   }
-  // Function to add new todos
+  // Function to add new todos 
   function handleAddTodos(newTodo: any) {
     const newTodoList: [...string[], any] = [...todos, newTodo];
     persistData(newTodoList);
     setTodos(newTodoList);
   }
 
-  // Function to delete a todo by index
+  // Function to delete a todo through index
   function handleDeleteTodos(index: any) {
     const newTodoList: any = todos.filter(
       (_, todoIndex) => todoIndex !== index
