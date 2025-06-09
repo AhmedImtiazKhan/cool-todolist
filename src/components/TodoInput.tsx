@@ -1,5 +1,12 @@
-export default function TodoInput(props: any) {
-  const { handleAddTodos, todoValue, setTodoValue } = props;
+import React from 'react';
+
+interface TodoInputProps {
+  handleAddTodos: (todo: string) => void;
+  todoValue: string;
+  setTodoValue: (value: string) => void;
+}
+
+export default function TodoInput({ handleAddTodos, todoValue, setTodoValue }: TodoInputProps): React.ReactElement {
   // const [todoValue, setTodoValue] = useState('')  // Add useState for input value
 
   function handleAdd() {
@@ -10,7 +17,7 @@ export default function TodoInput(props: any) {
     }
   }
 
-  function handleKeyPress(e: any) {
+  function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
       if (todoValue.trim() !== "") {
         handleAdd();
@@ -24,7 +31,7 @@ export default function TodoInput(props: any) {
     <header>
       <input
         value={todoValue}
-        onChange={(e) => setTodoValue(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTodoValue(e.target.value)}
         onKeyPress={handleKeyPress}
         placeholder="Enter your task"
       />
