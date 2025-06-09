@@ -20,12 +20,6 @@ const CATEGORIES = {
   OTHER: '📝 Other'
 };
 
-const TIME_PATTERNS = {
-  MORNING: ['morning', 'breakfast', 'wake up', 'early'],
-  AFTERNOON: ['afternoon', 'lunch', 'noon'],
-  EVENING: ['evening', 'dinner', 'night', 'late']
-};
-
 export default function AISuggestions({ todos, onSuggestionClick }: AISuggestionsProps): React.ReactElement | null {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [usedSuggestions, setUsedSuggestions] = useState<Set<string>>(new Set());
